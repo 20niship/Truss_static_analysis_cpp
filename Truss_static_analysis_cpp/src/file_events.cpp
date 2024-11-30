@@ -1,5 +1,5 @@
 #include "file_events.h"
-
+#include "cocoa_file_dialog.h"
 
 file_events::file_events()
 {
@@ -43,6 +43,7 @@ void file_events::update_event(menu_item m_ck, geom_store& geom)
 // Function to show a file dialog and return the selected file name as std::string
 std::string file_events::ShowOpenFileDialog()
 {
+#ifdef _WIN32
 	OPENFILENAMEW ofn;                         // Structure to store the file dialog options (wide-character version)
 	wchar_t fileName[MAX_PATH];                // Buffer to store the selected file path (wide-character version)
 
@@ -70,11 +71,17 @@ std::string file_events::ShowOpenFileDialog()
 		return fileName;
 	}
 
+#else
+  printf("ShowOpenFileDialog() is not implemented on this platform!\n");
+  std::string s = openFileDialog();
+  return s;
+#endif
 	return "";  // Return an empty string if the file dialog was cancelled or an error occurred
 }
 
 std::string file_events::ShowOpenFileDialog_dxf()
 {
+#ifdef _WIN32
 	OPENFILENAMEW ofn;                         // Structure to store the file dialog options (wide-character version)
 	wchar_t fileName[MAX_PATH];                // Buffer to store the selected file path (wide-character version)
 
@@ -101,6 +108,9 @@ std::string file_events::ShowOpenFileDialog_dxf()
 		WideCharToMultiByte(CP_UTF8, 0, ofn.lpstrFile, -1, &fileName[0], bufferSize, nullptr, nullptr);
 		return fileName;
 	}
+#else
+  printf("ShowOpenFileDialog() is not implemented on this platform!\n");
+#endif
 
 	return "";  // Return an empty string if the file dialog was cancelled or an error occurred
 
@@ -108,6 +118,7 @@ std::string file_events::ShowOpenFileDialog_dxf()
 
 std::string file_events::ShowSaveFileDialog()
 {
+#ifdef _WIN32
 	OPENFILENAMEW ofn;                         // Structure to store the file dialog options (wide-character version)
 	wchar_t fileName[MAX_PATH];                // Buffer to store the selected file path (wide-character version)
 
@@ -135,7 +146,9 @@ std::string file_events::ShowSaveFileDialog()
 		WideCharToMultiByte(CP_UTF8, 0, ofn.lpstrFile, -1, &fileName[0], bufferSize, nullptr, nullptr);
 		return fileName;
 	}
-
+#else
+  printf("ShowSaveFileDialog() is not implemented on this platform!\n");  
+#endif
 	return "";  // Return an empty string if the file dialog was cancelled or an error occurred
 }
 

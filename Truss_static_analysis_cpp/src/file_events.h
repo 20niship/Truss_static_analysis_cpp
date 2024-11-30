@@ -3,8 +3,11 @@
 #include <fstream>
 #include <string>
 #include <unordered_map>
+#ifdef _WIN32
 #include <Windows.h>
 #include <Commdlg.h>
+#else
+#endif
 #include <limits>
 #include "geometry_store/nodes_store_list.h" // header file for the nodes_store class
 #include "geometry_store/lines_store_list.h" // header file for the lines_store class

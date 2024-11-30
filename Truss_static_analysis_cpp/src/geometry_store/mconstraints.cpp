@@ -100,7 +100,7 @@ void mconstraints::update_buffer()
 	float* constraint_vertices = new float[constraint_vertex_count];
 
 	unsigned int constraint_indices_count = 6 * constraint_count;
-	unsigned int* constraint_vertex_indices = new unsigned int[constraint_indices_count];
+	unsigned int* constraint_vertex_indices = new uint32_t[constraint_indices_count];
 
 	unsigned int constraint_v_index = 0;
 	unsigned int constraint_i_index = 0;
@@ -109,7 +109,7 @@ void mconstraints::update_buffer()
 	{
 		// Add the constraint point
 		set_constraint_vertices(constraint_vertices, constraint_v_index, constraint.second.node,
-			constraint.second.constraint_angle, unsigned int(constraint.second.constraint_type));
+			constraint.second.constraint_angle, uint32_t(constraint.second.constraint_type));
 
 		// Add the indices
 		set_constraint_indices(constraint_vertex_indices, constraint_i_index);

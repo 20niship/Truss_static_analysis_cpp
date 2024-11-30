@@ -18,7 +18,7 @@ void geom_parameters::init()
 	std::cout << "Current path of application is " << resourcePath << std::endl;
 
 	// Create the font atlas
-	main_font.create_atlas(resourcePath);
+	// main_font.create_atlas(resourcePath);
 
 	// Initialize the color theme
 	geom_colors.background_color = glm::vec3(0.62f, 0.62f, 0.62f);

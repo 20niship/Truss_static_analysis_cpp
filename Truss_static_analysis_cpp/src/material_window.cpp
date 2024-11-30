@@ -1,4 +1,5 @@
 #include "material_window.h"
+#include <vector>
 
 material_window::material_window()
 	: is_show_window(false)
